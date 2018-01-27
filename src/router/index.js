@@ -6,6 +6,7 @@ import About from '@/components/About';
 import Bags from '@/components/Bags';
 import Wind from '@/components/Wind';
 import Percussion from '@/components/Percussion';
+import Contact from '@/components/Contact';
 
 Vue.use(Router);
 
@@ -41,5 +42,13 @@ export default new Router({
       name: 'bags',
       component: Bags,
     },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: Contact,
+    },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  },
 });

@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <!-- Follow Menu -->
-    <div class="ui large top fixed menu transition hidden" vif>
-      <div class="ui container">
-          <span class="header item">Kennith Loop International</span>
-          <router-link tag="a" v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }">
-            <a class="item" v-on:click="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}"> {{ tab.name }}</a>
-          </router-link>        
+    <transition name="fade">
+      <div class="ui large top fixed menu" v-show="headerPassed">
+        <div class="ui container">
+            <span class="header item">Kennith Loop International</span>
+            <router-link tag="a" v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }">
+              <a class="item" v-on:click="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}"> {{ tab.name }}</a>
+            </router-link>        
+        </div>
       </div>
-    </div>
-    <div class="ui inverted vertical masthead center aligned segmented">
+    </transition>
+    <!-- Follow Menu End -->
+    <div class="ui inverted vertical masthead center aligned segmented" v-on:scroll="headerTransition()">
       <div class="ui container">
         <div class="ui massive inverted secondary pointing menu">
           <span class="header item">Kennith Loop International</span>
@@ -18,7 +21,7 @@
           </router-link>
         </div>
         <!-- conditional headers -->
-        <div class="ui text container" v-if="this.$route.name === 'home'">
+        <div class="ui text container" v-if="this.$route.name === 'home'" ref="LOL">
           <h1 class="ui inverted header">Kennith Loop International</h1>
           <h3 class="ui inverted header">Case utamur at pri. Tation convenire ullamcorper duo et. Duis detracto nominavi sed et, at sit tota equidem, te vis viderer noluisse conceptam.</h3>
           <router-link to="/" tag="button" class="ui large primary button">Contact Us</router-link>
@@ -50,9 +53,11 @@
         <!-- Conditional Headers End -->
       </div>
     </div>
+    <!-- Page Content -->
     <div class="ui main container">
       <router-view></router-view>
     </div>
+    <!-- Footers -->
     <div class="ui fixed vertical inverted footer segment">
       <div class="ui container center aligned">
         <div class="ui stackable inverted grid">
@@ -62,8 +67,8 @@
           </div>
           <div class="six wide column">
             <div class="ui inverted link list">
-              <a class="item">contact</a>
-              <a class="item">about</a>
+              <router-link tag="a" class="item" to="/about">about</router-link>
+              <router-link tag="a" class="item" to="/contact">contact us</router-link>
             </div>
           </div>
         </div>
@@ -82,6 +87,8 @@ export default {
   name: 'app',
   data() {
     return {
+      headerPassed: false,
+      sideBar: false,
       navbars:
       [
         {
@@ -127,6 +134,30 @@ export default {
       }
       item.clicked = true;
     },
+    headerTransition() {
+      if (window.pageYOffset > 500) {
+        this.headerPassed = true;
+      } else {
+        this.headerPassed = false;
+      }
+    },
+    windowSize() {
+      if (document.documentElement.clientWidth < 933) {
+        console.log('need to resize');
+        sideBar = true;
+      } else {
+        console.log('dont need to resize');
+        sideBar = false;
+      }
+    },
+  },
+  created() {
+    window.addEventListener('scroll', this.headerTransition);
+    window.addEventListener('resize', this.windowSize);
+  },
+  destoryed() {
+    window.removeEventListener('scroll', this.headerTransition);
+    window.addEventListener('resize', this.windowSize);
   },
 };
 </script>
@@ -168,5 +199,11 @@ export default {
 }
 .ui.horizonatal {
   margin-top: 2rem;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to{
+  opacity: 0;
 }
 </style>
