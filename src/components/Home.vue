@@ -1,5 +1,5 @@
 <template>
-<div class="ui container">
+<div class="ui main container">
   <h1>Products</h1>
   <div class="ui stackable grid">
     <div class="three column row">
@@ -38,12 +38,6 @@
 <script>
 export default {
   name: 'Home',
-  data() {
-    return {
-    };
-  },
-  methods: {
-  },
 };
 </script>
 <style>

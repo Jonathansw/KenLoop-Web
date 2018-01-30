@@ -54,9 +54,7 @@
       </div>
     </div>
     <!-- Page Content -->
-    <div class="ui main container">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
     <!-- Footers -->
     <div class="ui fixed vertical inverted footer segment">
       <div class="ui container center aligned">
@@ -144,10 +142,10 @@ export default {
     windowSize() {
       if (document.documentElement.clientWidth < 933) {
         console.log('need to resize');
-        sideBar = true;
+        this.sideBar = true;
       } else {
         console.log('dont need to resize');
-        sideBar = false;
+        this.sideBar = false;
       }
     },
   },

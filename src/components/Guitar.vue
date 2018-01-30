@@ -1,5 +1,5 @@
 <template>
-<div class="ui container">
+<div class="ui main container">
   <h1>Guitar</h1>
   <h1>Lorem ipsum dolor sit amet consectetuer adipiscing elit</h1>
   <ul>

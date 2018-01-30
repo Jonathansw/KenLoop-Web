@@ -1,17 +1,76 @@
 <template>
-  <div class="ui divided item">
-    <div class="item">
-      <google-map name="homeLoc"></google-map>
-      <div class="middle aligned content">
-        <div class="ui big very relaxed list">
-          <div class="item">
-            <i class="users icon"></i>
-              <div class="content">
-                KDJFlk
+  <div class="ui main container">
+    <div class="ui vertical stripe segement">
+      <div class="ui grid stackable container">
+        <div class="six wide column">
+          <div class="ui grid">
+            <div class="row">
+              <div class="column">
+                <h3>Address</h3>
+                <p>Taipei 101, No. 7, Section 5, Xinyi Road, Xinyi District, Taipei City, Taiwan</p>
               </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <h3>Phone</h3>
+                <p>(123) 456-7899</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <h3>Email</h3>
+                <p>Tempemail@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ten wide column">
+          <div class="ui grid">
+            <div class="row">
+              <div class="eight wide column">
+                <div class="ui form">
+                  <div class="field">
+                  <label>First Name</label>
+                  <input type="text" placeholder="Enter here">
+                  </div>
+                </div>           
+              </div>
+              <div class="eight wide column">
+                <div class="ui form">
+                  <div class="field">
+                  <label>First Name</label>
+                  <input type="text" placeholder="Enter here">
+                  </div>
+                </div>           
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <div class="ui form">
+                  <div class="field">
+                    <label>Email Address</label>
+                    <input type="text" placeholder="Search a very wide input...">
+                  </div>
+                </div> 
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <div class="ui form">
+                  <div class="field">
+                    <label>Comments/Questions</label>
+                    <textarea></textarea>
+                  </div>
+                </div>
+                <button class="ui button" type="submit">Submit</button>                
+              </div>
+            </div>                   
           </div>
         </div>
       </div>
+    </div>
+    <div class="ui vertical stripe segement">
+      <google-map name="homeLoc"></google-map>
     </div>
   </div>
 </template>
@@ -27,5 +86,8 @@ export default {
 };
 </script>
 <style>
+.ui.button {
+  margin-top: 10px;
+}
 
 </style>
