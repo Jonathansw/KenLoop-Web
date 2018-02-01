@@ -4,8 +4,17 @@
   <div class="ui stackable grid">
     <div class="four column row">
       <div v-for="i in (1, navbars.length - 1)" v-bind:key="navbars[i].name" class="column">
-        <div class="ui card">
-          <div v-on:mouseover="mouseOver(i)" class="image">
+        <div class="ui special card" v-on:mouseover="navbars[i].hover = true;" v-on:mouseleave="navbars[i].hover = false">
+          <div class="blurring dimmable image" v-bind:class="{dimmed: navbars[i].hover}">
+            <div class="ui inverted dimmer" v-bind:class="{active: navbars[i].hover}">
+              <div class="content">
+                <div class="center">
+                  <router-link tag="div" class="ui inverted button" :to="{path: navbars[i].path}" v-on:click.native="setNav(navbars[i].name)">
+                    {{navbars[i].name}}
+                  </router-link>
+                </div>
+              </div>
+            </div>
             <img v-if="navbars[i].name === 'Guitar'" src="../assets/guitar.jpeg">
             <img v-else-if="navbars[i].name === 'Wind Instruments'" src="../assets/wind.jpeg">
             <img v-else-if="navbars[i].name === 'Drums Outfit & Percussions'" src="../assets/drums.jpeg">
@@ -26,16 +35,20 @@ export default {
   name: 'Home',
   props: ['navbars'],
   methods: {
-    mouseOver(input) {
-      console.log('moused over', input);
-    }
+    setNav(item) {
+      console.log(item);
+      this.navbars.forEach(tab => {
+        if(tab.name === item){
+          tab.clicked = true;
+        } else {
+          tab.clicked = false;
+        }
+      });
+    },
   },
+
 };
 </script>
 <style>
-.button.ui.button.bottom.attahced {
-  margin: 0 0 !important;
-  width: auto !important;
-}
 
 </style>

@@ -95,26 +95,31 @@ export default {
           name: 'Home',
           path: '/',
           clicked: true,
+          hover: false,
         },
         {
           name: 'Guitar',
           path: '/guitar',
           clicked: false,
+          hover: false,
         },
         {
           name: 'Wind Instruments',
           path: '/wind',
           clicked: false,
+          hover: false,
         },
         {
           name: 'Drums Outfit & Percussions',
           path: '/percussion',
           clicked: false,
+          hover: false,
         },
         {
           name: 'Bags & Cases',
           path: '/bags',
           clicked: false,
+          hover: false,
         },
       ],
     };
