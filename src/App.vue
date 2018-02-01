@@ -5,9 +5,10 @@
       <div class="ui large top fixed menu" v-show="headerPassed">
         <div class="ui container">
             <span class="header item">Kennith Loop International</span>
-            <router-link tag="a" v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }">
-              <a class="item" v-on:click="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}"> {{ tab.name }}</a>
-            </router-link>        
+          <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
+            class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
+                {{ tab.name }}
+          </router-link>      
         </div>
       </div>
     </transition>
@@ -16,15 +17,16 @@
       <div class="ui container">
         <div class="ui massive inverted secondary pointing menu">
           <span class="header item">Kennith Loop International</span>
-          <router-link tag="a" v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }">
-            <a class="item" v-on:click="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}"> {{ tab.name }}</a>
+          <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
+            class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
+                {{ tab.name }}
           </router-link>
         </div>
         <!-- conditional headers -->
-        <div class="ui text container" v-if="this.$route.name === 'home'" ref="LOL">
+        <div class="ui text container" v-if="this.$route.name === 'home'">
           <h1 class="ui inverted header">Kennith Loop International</h1>
           <h3 class="ui inverted header">Case utamur at pri. Tation convenire ullamcorper duo et. Duis detracto nominavi sed et, at sit tota equidem, te vis viderer noluisse conceptam.</h3>
-          <router-link to="/" tag="button" class="ui large primary button">Contact Us</router-link>
+          <router-link to="/contact" tag="button" class="ui large primary button" v-on:click.native="setOff">Contact Us</router-link>
         </div>
         <div class="ui text container" v-else-if="this.$route.name === 'guitar'">
           <h1 class="ui inverted header">Guitar</h1>
@@ -54,7 +56,7 @@
       </div>
     </div>
     <!-- Page Content -->
-    <router-view></router-view>
+    <router-view v-bind:navbars="navbars"></router-view>
     <!-- Footers -->
     <div class="ui fixed vertical inverted footer segment">
       <div class="ui container center aligned">
@@ -65,8 +67,8 @@
           </div>
           <div class="six wide column">
             <div class="ui inverted link list">
-              <router-link tag="a" class="item" to="/about">about</router-link>
-              <router-link tag="a" class="item" to="/contact">contact us</router-link>
+              <router-link tag="a" class="item" to="/about" v-on:click.native="setOff">about</router-link>
+              <router-link tag="a" class="item" to="/contact" v-on:click.native="setOff">contact us</router-link>
             </div>
           </div>
         </div>
@@ -120,6 +122,13 @@ export default {
   components: {
   },
   methods: {
+    setOff() {
+      this.navbars.forEach((navbar) => {
+        if (navbar.clicked) {
+          navbar.clicked = !navbar.clicked;
+        }
+      });
+    },
     toggleActive(i, e) {
       const item = this.navbars.find(obj => obj.name === i);
       if (e.ctrlKey) {

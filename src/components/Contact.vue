@@ -29,17 +29,17 @@
             <div class="row">
               <div class="eight wide column">
                 <div class="ui form">
-                  <div class="field">
+                  <div class="required field">
                   <label>First Name</label>
-                  <input type="text" placeholder="Enter here">
+                  <input type="text">
                   </div>
                 </div>           
               </div>
               <div class="eight wide column">
                 <div class="ui form">
-                  <div class="field">
+                  <div class="required field">
                   <label>First Name</label>
-                  <input type="text" placeholder="Enter here">
+                  <input type="text">
                   </div>
                 </div>           
               </div>
@@ -47,9 +47,9 @@
             <div class="row">
               <div class="column">
                 <div class="ui form">
-                  <div class="field">
+                  <div class="required field">
                     <label>Email Address</label>
-                    <input type="text" placeholder="Search a very wide input...">
+                    <input type="text">
                   </div>
                 </div> 
               </div>
@@ -57,7 +57,7 @@
             <div class="row">
               <div class="column">
                 <div class="ui form">
-                  <div class="field">
+                  <div class="required field">
                     <label>Comments/Questions</label>
                     <textarea></textarea>
                   </div>

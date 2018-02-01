@@ -2,32 +2,18 @@
 <div class="ui main container">
   <h1>Products</h1>
   <div class="ui stackable grid">
-    <div class="three column row">
-      <div class="column">
-        <div class="ui fluid card">
-          <img class="ui image" src="../assets/guitar.jpeg">
-          <div class="content">
-            <div class="header">Guitars</div>
+    <div class="four column row">
+      <div v-for="i in (1, navbars.length - 1)" v-bind:key="navbars[i].name" class="column">
+        <div class="ui card">
+          <div v-on:mouseover="mouseOver(i)" class="image">
+            <img v-if="navbars[i].name === 'Guitar'" src="../assets/guitar.jpeg">
+            <img v-else-if="navbars[i].name === 'Wind Instruments'" src="../assets/wind.jpeg">
+            <img v-else-if="navbars[i].name === 'Drums Outfit & Percussions'" src="../assets/drums.jpeg">
+            <img v-else-if="navbars[i].name === 'Bags & Cases'" src="../assets/bag.jpeg"> 
           </div>
-          <router-link to="/guitar" tag='button' class="ui button bottom attached">Find More</router-link>
-        </div>
-      </div>
-      <div class="column">
-        <div class="ui fluid card">
-          <img class="ui image" src="../assets/drums.jpeg">
           <div class="content">
-            <div class="header">Drums</div>
+            <span class="header">{{navbars[i].name}}</span>
           </div>
-          <router-link to="/" tag='button' class="ui button bottom attached">Find More</router-link>
-        </div>
-      </div>
-      <div class="column">
-        <div class="ui fluid card">
-          <img class="ui image" src="../assets/piano.jpeg">
-          <div class="content">
-            <div class="header">Pianos</div>
-          </div>
-          <router-link to="/" tag='button' class="ui button bottom attached">Find More</router-link>
         </div>
       </div>
     </div>
@@ -38,8 +24,18 @@
 <script>
 export default {
   name: 'Home',
+  props: ['navbars'],
+  methods: {
+    mouseOver(input) {
+      console.log('moused over', input);
+    }
+  },
 };
 </script>
 <style>
+.button.ui.button.bottom.attahced {
+  margin: 0 0 !important;
+  width: auto !important;
+}
 
 </style>
