@@ -25,47 +25,7 @@
           </div>
         </div>
         <div class="ten wide column">
-          <div class="ui grid">
-            <div class="row">
-              <div class="eight wide column">
-                <div class="ui form">
-                  <div class="required field">
-                  <label>First Name</label>
-                  <input type="text">
-                  </div>
-                </div>           
-              </div>
-              <div class="eight wide column">
-                <div class="ui form">
-                  <div class="required field">
-                  <label>First Name</label>
-                  <input type="text">
-                  </div>
-                </div>           
-              </div>
-            </div>
-            <div class="row">
-              <div class="column">
-                <div class="ui form">
-                  <div class="required field">
-                    <label>Email Address</label>
-                    <input type="text">
-                  </div>
-                </div> 
-              </div>
-            </div>
-            <div class="row">
-              <div class="column">
-                <div class="ui form">
-                  <div class="required field">
-                    <label>Comments/Questions</label>
-                    <textarea></textarea>
-                  </div>
-                </div>
-                <button class="ui button" type="submit">Submit</button>                
-              </div>
-            </div>                   
-          </div>
+          <contact-form></contact-form>
         </div>
       </div>
     </div>
@@ -77,11 +37,13 @@
 
 <script>
 import GoogleMap from './GoogleMap';
+import ContactForm from './ContactForm'
 
 export default {
   name: 'Contact',
   components: {
     GoogleMap,
+    ContactForm,
   },
 };
 </script>
