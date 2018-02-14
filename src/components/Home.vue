@@ -40,6 +40,7 @@ export default {
       this.navbars.forEach(tab => {
         if(tab.name === item){
           tab.clicked = true;
+          tab.hover = false;
         } else {
           tab.clicked = false;
         }
