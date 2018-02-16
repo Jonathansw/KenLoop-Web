@@ -1,7 +1,16 @@
 import Api from './Api';
 
 export default {
-  fetchProducts() {
-    return Api().get('/');
+  fetchGuitars() {
+    return Api().get('/guitar');
+  },
+  fetchBags() {
+    return Api().get('/bag');
+  },
+  fetchWinds() {
+    return Api().get('/wind');
+  },
+  fetchPercussions() {
+    return Api().get('/percussion');
   },
 };

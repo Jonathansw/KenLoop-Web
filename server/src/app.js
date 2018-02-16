@@ -15,16 +15,20 @@ mongoose.connect(dbURI);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection Error'));
 db.once('open', () => {
-  console.log('Connection Sucessful');
+  console.log('Connection to Database Sucessful');
 });
 
-app.get('/', (req, res) => {
-  res.send(
-    [{
-      name: 'Guitar',
-      description: 'wood, 7 string',
-    }]
-  );
-});
+// Models
+const Bags = require('../models/bags');
+const Guitars = require('../models/guitars');
+const Percussions = require('../models/percussions');
+const Winds = require('../models/winds');
+
+// Load Modules
+require('../routes/bag')(app, Bags);
+require('../routes/guitar')(app, Guitars);
+require('../routes/percussion')(app, Percussions);
+require('../routes/wind')(app, Winds);
+
 
 app.listen(process.env.PORT || 8081);

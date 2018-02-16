@@ -37,7 +37,7 @@
 
 <script>
 import GoogleMap from './GoogleMap';
-import ContactForm from './ContactForm'
+import ContactForm from './ContactForm';
 
 export default {
   name: 'Contact',

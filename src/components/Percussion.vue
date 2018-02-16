@@ -1,26 +1,35 @@
 <template>
 <div class="ui main container">
   <h1>Drums</h1>
-  <h1>Lorem ipsum dolor sit amet consectetuer adipiscing elit</h1>
-  <ul>
-    <li>Lorem ipsum dolor sit amet consectetuer.</li>
-    <li>Aenean commodo ligula eget dolor.</li>
-    <li>Aenean massa cum sociis natoque penatibus.</li>
-  </ul>
-  <p>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing 
-    elit. Aenean commodo ligula eget dolor. Aenean massa. 
-    Cum sociis natoque penatibus et magnis dis parturient 
-    montes, nascetur ridiculus mus. Donec quam felis, 
-    ultricies nec, pellentesque eu, pretium quis, sem.
-  </p>
+  <div v-for="percussion in products" v-bind:key="percussion._id">
+    <p>{{percussion.name}}</p>
+    <p>{{percussion.size}}</p>
+    <p>{{percussion.description}}</p>
+    <p>{{percussion.type}}</p>
+  </div>
 
 </div>
 </template>
 
 <script>
+import ProductService from '../../services/ProductService';
+
 export default {
-  name: 'Guitar',
+  name: 'Percussion',
+  data() {
+    return {
+      products: [],
+    };
+  },
+  mounted() {
+    this.getPercussions();
+  },
+  methods: {
+    async getPercussions() {
+      const response = await ProductService.fetchPercussions();
+      this.products = response.data.percussion;
+    }
+  }
 };
 </script>
 <style>

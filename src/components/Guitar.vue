@@ -1,26 +1,35 @@
 <template>
 <div class="ui main container">
   <h1>Guitar</h1>
-  <h1>Lorem ipsum dolor sit amet consectetuer adipiscing elit</h1>
-  <ul>
-    <li>Lorem ipsum dolor sit amet consectetuer.</li>
-    <li>Aenean commodo ligula eget dolor.</li>
-    <li>Aenean massa cum sociis natoque penatibus.</li>
-  </ul>
-  <p>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing 
-    elit. Aenean commodo ligula eget dolor. Aenean massa. 
-    Cum sociis natoque penatibus et magnis dis parturient 
-    montes, nascetur ridiculus mus. Donec quam felis, 
-    ultricies nec, pellentesque eu, pretium quis, sem.
-  </p>
+  <div v-for="guitar in products" v-bind:key="guitar._id">
+    <p>{{guitar.name}}</p>
+    <p>{{guitar.description}}</p>
+    <p>{{guitar.type}}</p>
+  </div>
+
 
 </div>
 </template>
 
 <script>
+import ProductService from '../../services/ProductService';
+
 export default {
   name: 'Guitar',
+  data() {
+    return {
+      products: [],
+    };
+  },
+  mounted() {
+    this.getGuitars();
+  },
+  methods: {
+    async getGuitars() {
+      const response = await ProductService.fetchGuitars();
+      this.products = response.data.guitar;
+    },
+  },
 };
 </script>
 <style>
