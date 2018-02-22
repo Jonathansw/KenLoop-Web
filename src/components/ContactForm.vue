@@ -1,20 +1,12 @@
 <template>
-  <form v-on:submit="checkForm">
+  <form v-on:submit.prevent="validateBeforeSubmit">
     <div class="ui grid">
       <div class="row">
-        <div class="eight wide column">
+        <div class="column">
           <div class="ui form">
-            <div class="required field" v-bind:class="{error: this.firstName.input}">
-              <label>First Name</label>
-              <input type="text" name="firstName" id="firstName" v-model="firstName.user">
-            </div>
-          </div>           
-        </div>
-        <div class="eight wide column">
-          <div class="ui form">
-            <div class="required field" v-bind:class="{error: this.firstName.input}">
-              <label>Last Name</label>
-              <input type="text" name="lastName" id="lastName" v-model="lastName.user">
+            <div class="required field" v-bind:class="{error: errors.has('name')}">
+              <label>Full Name</label>
+              <input type="text" name="name" id="name" v-model="name" v-validate="'required|alpha_spaces'">
             </div>
           </div>           
         </div>
@@ -22,9 +14,9 @@
         <div class="row">
           <div class="column">
             <div class="ui form">
-              <div class="required field" v-bind:class="{error: this.firstName.input}">
+              <div class="required field" v-bind:class="{error: errors.has('email')}">
                 <label>Email Address</label>
-                <input type="email" name="email" id="email" v-model="email.user">
+                <input type="email" name="email" id="email" v-model="email" v-validate="'required|email'">
               </div>
             </div> 
           </div>
@@ -32,11 +24,15 @@
         <div class="row">
           <div class="column">
             <div class="ui form">
-              <div class="required field" v-bind:class="{error: this.message.input}">
+              <div class="required field" v-bind:class="{error: errors.has('message')}">
                 <label>Comments/Questions</label>
-                <textarea v-model="message.user"></textarea>
+                <textarea name="message" id="message" v-model="message" v-validate="'required|min:10|max:500'"></textarea>
+              </div>
             </div>
-          </div>
+            <div class="ui success message" v-bind:class="{hidden: !this.formSubmmited}">
+              <div class="header">Email Sent</div>
+              <p>We will email you back as soon as possible</p>
+            </div>
           <input class="ui button" type="submit" value="Submit">                
         </div>
       </div>                   
@@ -49,42 +45,27 @@ export default {
   name: 'ContactForm',
   data() {
     return {
-      firstName: { 
-        user: null,
-        input: false,
-      },
-      lastName: {
-        user: null,
-        input: false,
-      },
-      email: {
-        user: null,
-        input: false,
-      },
-      message: {
-        user: null,
-        input: false,
-      },
+      name: '',
+      email: '',
+      message: '',
+      formSubmmited: false,
     };
   },
   methods: {
-    checkForm(e) {
-      if(!this.firstName.user) this.firstName.input = true;
-      if(!this.lastName.user) this.lastName.input = true;
-      if(!this.message.user) this.message.input = true;
-      if(!this.email.user) {
-        this.email.input = true;
-      } else if(!this.validEmail(this.email.user)) {
-        this.email.input = true;
-      }
-      if(this.firstName.input === this.lastName.input === this.email.input === this.message.input === false) return true;
-      e.preventDefault();
+    validateBeforeSubmit(event) {
+      this.$validator.validateAll().then((result) => {
+        if(result) {
+          this.formSubmmited = true;
+          this.name = '';
+          this.email = '';
+          this.message = '';
+          this.$validator.reset();
+          return;
+        }
+        this.formSubmmited = false;
+      });
     },
-    validEmail(email) {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
-    }
-  }
+  },
 };
 </script>
 

@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const dbURI = 'mongodb://localhost:27017/KenLoop';
@@ -29,6 +30,7 @@ require('../routes/bag')(app, Bags);
 require('../routes/guitar')(app, Guitars);
 require('../routes/percussion')(app, Percussions);
 require('../routes/wind')(app, Winds);
+require('../routes/contact')(app, nodemailer);
 
 
 app.listen(process.env.PORT || 8081);
