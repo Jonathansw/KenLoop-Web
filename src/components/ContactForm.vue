@@ -33,7 +33,7 @@
               <div class="header">Email Sent</div>
               <p>We will email you back as soon as possible</p>
             </div>
-          <input class="ui button" type="submit" value="Submit">                
+          <button class="ui button" type="submit" value="Submit" v-bind:disabled="errors.any()"> Submit </button>               
         </div>
       </div>                   
     </div>
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import ProductService from '../../services/ProductService';
+
 export default {
   name: 'ContactForm',
   data() {
@@ -52,9 +54,18 @@ export default {
     };
   },
   methods: {
+    action() {
+      const output = {
+        name: this.name,
+        email: this.email,
+        message: this.message
+      };
+      ProductService.sendEmail(output);
+    },
     validateBeforeSubmit(event) {
       this.$validator.validateAll().then((result) => {
         if(result) {
+          this.action();
           this.formSubmmited = true;
           this.name = '';
           this.email = '';

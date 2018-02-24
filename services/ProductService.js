@@ -13,4 +13,7 @@ export default {
   fetchPercussions() {
     return Api().get('/percussion');
   },
+  sendEmail(params) {
+    return Api().post('/contact', params);
+  },
 };
