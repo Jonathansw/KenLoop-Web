@@ -1,12 +1,12 @@
-module.exports = function (app, nodemailer) {
+module.exports = function (app, nodemailer, config) {
   const baseUrl = '/contact';
-
+  const emailPass = config.emailPass;
   app.post(baseUrl, (req, res) => {
     const stmpTrans = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: '',
-        pass: '',
+        user: 'kenloopwebsite@gmail.com',
+        pass: emailPass,
       },
     });
     const mailOpts = {

@@ -2,9 +2,17 @@
 <div class="ui main container">
   <h1>Guitar</h1>
   <div v-for="guitar in products" v-bind:key="guitar._id">
-    <p>{{guitar.name}}</p>
-    <p>{{guitar.description}}</p>
-    <p>{{guitar.type}}</p>
+    <p>{{ guitar.type }}</p>
+    <div v-if="this.guitar.type === Accoustic" class="vertical segmented">
+      <h1>{{guitar.type}}</h1>
+        <p>{{ guitar.name }}</p>
+        <p>{{ guitar.description }}</p>
+    </div>
+    <div v-else-if="this.guitar.type === Electric" class="vertical segmented">
+      <h1>{{guitar.type}}</h1>
+        <p>{{ guitar.name }}</p>
+        <p>{{ guitar.description }}</p>
+    </div>
   </div>
 
 
