@@ -4,11 +4,10 @@
 
 ## TODO LIST
 
-```
-* Write tests for all components (Front and Back)
-* Proper scaling of menu on mobile
-* Set up mLab on Heroku
-```
+[] Write tests for all components (Front and Back)
+[] Proper scaling of menu on mobile
+[] Set up mLab on Heroku
+
 
 ## Build Setup
 
