@@ -1,23 +1,22 @@
 <template>
 <div class="ui main container">
-  <h1>Bags</h1>
-  <div v-for="bag in products" v-bind:key="bag._id">
-    <p>{{bag.name}}</p>
-    <p>{{bag.description}}</p>
-    <p>{{bag.type}}</p>
-  </div>
-
+  <product v-bind:products="products" v-bind:types="types"></product>
 </div>
 </template>
 
 <script>
 import ProductService from '../../services/ProductService';
+import Product from './Product';
 
 export default {
   name: 'Bag',
+  components: {
+    Product,
+  },
   data() {
     return {
       products: [],
+      types: [],
     };
   },
   mounted() {
@@ -27,6 +26,7 @@ export default {
     async getBags() {
       const response = await ProductService.fetchBags();
       this.products = response.data.bag;
+      this.types = _.map(_.uniqBy(response.data.bag, 'type'), 'type');
     },
   },
 };

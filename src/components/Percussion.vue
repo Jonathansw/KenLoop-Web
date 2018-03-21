@@ -1,24 +1,22 @@
 <template>
 <div class="ui main container">
-  <h1>Drums</h1>
-  <div v-for="percussion in products" v-bind:key="percussion._id">
-    <p>{{percussion.name}}</p>
-    <p>{{percussion.size}}</p>
-    <p>{{percussion.description}}</p>
-    <p>{{percussion.type}}</p>
-  </div>
-
+  <product v-bind:products="products" v-bind:types="types"></product>
 </div>
 </template>
 
 <script>
 import ProductService from '../../services/ProductService';
+import Product from './Product';
 
 export default {
   name: 'Percussion',
+  components: {
+    Product,
+  },
   data() {
     return {
       products: [],
+      types: [],
     };
   },
   mounted() {
@@ -28,6 +26,7 @@ export default {
     async getPercussions() {
       const response = await ProductService.fetchPercussions();
       this.products = response.data.percussion;
+      this.types = _.map(_.uniqBy(response.data.percussion, 'type'), 'type');
     }
   }
 };

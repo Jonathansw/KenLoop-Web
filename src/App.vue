@@ -4,11 +4,13 @@
     <transition name="fade">
       <div class="ui large top fixed menu" v-show="headerPassed">
         <div class="ui container">
+          <div class="ui massive secondary pointing menu">
             <span class="header item">Kennith Loop International</span>
-          <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
-            class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
+            <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
+              class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
                 {{ tab.name }}
-          </router-link>      
+            </router-link>  
+          </div>    
         </div>
       </div>
     </transition>
@@ -19,7 +21,7 @@
           <span class="header item">Kennith Loop International</span>
           <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
             class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
-                {{ tab.name }}
+              {{ tab.name }}
           </router-link>
         </div>
         <!-- conditional headers -->

@@ -1,22 +1,18 @@
 <template>
 <div class="ui main container">
-  <div v-for="categories in types" v-bind:key="categories" class="ui vertical segment">
-    <h1>{{ categories }}</h1>
-    <div class="ui three column very relaxed grid">
-      <div v-for="guitar in getGuitars(categories)" v-bind:key="guitar._id" class="column">
-        <p>{{ guitar.name }}</p>
-        <p>{{ guitar.description }}</p>
-      </div>
-    </div>
-  </div>
+  <product v-bind:products="products" v-bind:types="types"></product>
 </div>
 </template>
 
 <script>
 import ProductService from '../../services/ProductService';
+import Product from './Product';
 
 export default {
   name: 'Guitar',
+  components: {
+    Product,
+  },
   data() {
     return {
       products: [],
@@ -32,9 +28,6 @@ export default {
       this.products = response.data.guitar;
       this.types = _.map(_.uniqBy(response.data.guitar, 'type'), 'type');
     },
-    getGuitars(search) {
-      return (_.filter(this.products, {type: search}));
-    }
   },
 };
 </script>
