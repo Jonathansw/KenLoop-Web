@@ -5,13 +5,15 @@ module.exports = function (app, nodemailer, emailPass) {
       service: 'Gmail',
       auth: {
         user: 'kenloopwebsite@gmail.com',
-        pass: emailPass,
+        pass: 'KenLoopInt',
       },
     });
+    
+    // Change to email to proper reciving email
     const mailOpts = {
       from: req.body.email,
-      to: '',
-      subject: 'Website Contact',
+      to: 'kenloopwebsite@gmail.com',
+      subject: `Website Contact from ${req.body.name} <${req.body.email}>`,
       text: req.body.message,
     };
 

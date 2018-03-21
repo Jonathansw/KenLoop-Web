@@ -1,21 +1,14 @@
 <template>
 <div class="ui main container">
-  <h1>Guitar</h1>
-  <div v-for="guitar in products" v-bind:key="guitar._id">
-    <p>{{ guitar.type }}</p>
-    <div v-if="this.guitar.type === Accoustic" class="vertical segmented">
-      <h1>{{guitar.type}}</h1>
+  <div v-for="categories in types" v-bind:key="categories" class="ui vertical segment">
+    <h1>{{ categories }}</h1>
+    <div class="ui three column very relaxed grid">
+      <div v-for="guitar in getGuitars(categories)" v-bind:key="guitar._id" class="column">
         <p>{{ guitar.name }}</p>
         <p>{{ guitar.description }}</p>
-    </div>
-    <div v-else-if="this.guitar.type === Electric" class="vertical segmented">
-      <h1>{{guitar.type}}</h1>
-        <p>{{ guitar.name }}</p>
-        <p>{{ guitar.description }}</p>
+      </div>
     </div>
   </div>
-
-
 </div>
 </template>
 
@@ -27,16 +20,21 @@ export default {
   data() {
     return {
       products: [],
+      types: [],
     };
   },
   mounted() {
-    this.getGuitars();
+    this.getProducts();
   },
   methods: {
-    async getGuitars() {
+    async getProducts() {
       const response = await ProductService.fetchGuitars();
       this.products = response.data.guitar;
+      this.types = _.map(_.uniqBy(response.data.guitar, 'type'), 'type');
     },
+    getGuitars(search) {
+      return (_.filter(this.products, {type: search}));
+    }
   },
 };
 </script>

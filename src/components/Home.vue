@@ -2,7 +2,7 @@
 <div class="ui main container">
   <h1>Products</h1>
   <div class="ui stackable grid">
-    <div class="four column row">
+    <div class="ui four column row">
       <div v-for="i in (1, navbars.length - 1)" v-bind:key="navbars[i].name" class="column">
         <div class="ui special card" v-on:mouseover="navbars[i].hover = true;" v-on:mouseleave="navbars[i].hover = false">
           <div class="blurring dimmable image" v-bind:class="{dimmed: navbars[i].hover}">

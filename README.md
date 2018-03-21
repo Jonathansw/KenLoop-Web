@@ -2,6 +2,13 @@
 
 > Kennith Loop International 
 
+## TODO LIST
+
+```
+* Write tests for all components (Front and Back)
+* Proper scaling of menu on mobile
+```
+
 ## Build Setup
 
 ``` bash
@@ -10,6 +17,9 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
+
+# run the nodejs server at localhost:8081
+npm run server
 
 # build for production with minification
 npm run build
