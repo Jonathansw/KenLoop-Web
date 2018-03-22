@@ -2,15 +2,13 @@
   <div id="app">
     <!-- Follow Menu -->
     <transition name="fade">
-      <div class="ui large top fixed menu" v-show="headerPassed">
+      <div class="ui massive top fixed menu" v-show="headerPassed && !sideBar">
         <div class="ui container">
-          <div class="ui massive secondary pointing menu">
-            <span class="header item">Kennith Loop International</span>
-            <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
-              class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
-                {{ tab.name }}
-            </router-link>  
-          </div>    
+          <span class="header item">Kennith Loop International</span>
+          <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
+            class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
+              {{ tab.name }}
+          </router-link>  
         </div>
       </div>
     </transition>
@@ -18,11 +16,17 @@
     <div class="ui inverted vertical masthead center aligned segmented" v-on:scroll="headerTransition()">
       <div class="ui container">
         <div class="ui massive inverted secondary pointing menu">
+          <a class="item" v-show="sideBar">
+            <i class="sidebar icon"></i>
+          </a>
+          <div class="ui container" v-show="!sideBar">
           <span class="header item">Kennith Loop International</span>
           <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
             class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
               {{ tab.name }}
           </router-link>
+          </div>
+
         </div>
         <!-- conditional headers -->
         <div class="ui text container" v-if="this.$route.name === 'home'">
@@ -156,14 +160,15 @@ export default {
       }
     },
     windowSize() {
-      if (document.documentElement.clientWidth < 933) {
-        console.log('need to resize');
+      if (document.documentElement.clientWidth < 1025) {
         this.sideBar = true;
       } else {
-        console.log('dont need to resize');
         this.sideBar = false;
       }
     },
+  },
+  beforeMount() {
+    this.windowSize();
   },
   created() {
     window.addEventListener('scroll', this.headerTransition);
