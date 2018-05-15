@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
 import Home from '@/components/Home';
 import Guitar from '@/components/Guitar';
 import About from '@/components/About';
@@ -7,6 +8,7 @@ import Bags from '@/components/Bags';
 import Wind from '@/components/Wind';
 import Percussion from '@/components/Percussion';
 import Contact from '@/components/Contact';
+import Product from '@/components/Product';
 
 Vue.use(Router);
 
@@ -23,9 +25,19 @@ export default new Router({
       component: Guitar,
     },
     {
+      path: '/guitar/:productName',
+      component: Product,
+      props: true,
+    },
+    {
       path: '/percussion',
       name: 'percussion',
       component: Percussion,
+    },
+    {
+      path: '/percussion/:productName',
+      component: Product,
+      props: true,
     },
     {
       path: '/about',
@@ -38,9 +50,19 @@ export default new Router({
       component: Wind,
     },
     {
+      path: '/wind/:productName',
+      component: Product,
+      props: true,
+    },
+    {
       path: '/bags',
       name: 'bags',
       component: Bags,
+    },
+    {
+      path: '/bags/:productName',
+      component: Product,
+      props: true,
     },
     {
       path: '/contact',
@@ -48,7 +70,7 @@ export default new Router({
       component: Contact,
     },
   ],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return { x: 0, y: 0 };
   },
 });

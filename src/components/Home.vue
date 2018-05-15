@@ -1,6 +1,6 @@
 <template>
 <div class="ui main container">
-  <h1>Products</h1>
+  <h1 class="ui dividing header">Products</h1>
   <div class="ui four stackable cards">
     <div v-for="i in (1, navbars.length - 1)" v-bind:key="navbars[i].name" v-on:mouseover="navbars[i].hover = true;" 
     v-on:mouseleave="navbars[i].hover = false" class="card">
@@ -33,9 +33,9 @@ export default {
   props: ['navbars'],
   methods: {
     setNav(item) {
-      console.log(item);
-      this.navbars.forEach(tab => {
-        if(tab.name === item){
+      this.navbars.forEach((tabs) => {
+        const tab = tabs;
+        if (tab.name === item) {
           tab.clicked = true;
           tab.hover = false;
         } else {

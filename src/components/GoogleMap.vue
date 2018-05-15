@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  /* eslint-disable */
   name: 'google-map',
   props: ['name'],
   data() {

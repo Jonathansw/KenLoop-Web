@@ -58,13 +58,13 @@ export default {
       const output = {
         name: this.name,
         email: this.email,
-        message: this.message
+        message: this.message,
       };
       ProductService.sendEmail(output);
     },
-    validateBeforeSubmit(event) {
+    validateBeforeSubmit() {
       this.$validator.validateAll().then((result) => {
-        if(result) {
+        if (result) {
           this.action();
           this.formSubmmited = true;
           this.name = '';

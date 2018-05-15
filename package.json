@@ -23,7 +23,7 @@
     "morgan": "^1.9.0",
     "nodemailer": "^4.6.3",
     "nodemon": "^1.17.2",
-    "npm": "^5.7.1",
+    "npm": "^5.10.0",
     "serve-static": "^1.13.2",
     "vee-validate": "^2.0.5",
     "vue": "^2.5.16",

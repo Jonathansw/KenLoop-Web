@@ -1,17 +1,17 @@
 <template>
 <div class="ui main container">
-  <product v-bind:products="products" v-bind:types="types"></product>
+  <product-page v-bind:products="products" v-bind:types="types"></product-page>
 </div>
 </template>
 
 <script>
 import ProductService from '../../services/ProductService';
-import Product from './Product';
+import ProductPage from './ProductPage';
 
 export default {
   name: 'Wind',
   components: {
-    Product,
+    ProductPage,
   },
   data() {
     return {

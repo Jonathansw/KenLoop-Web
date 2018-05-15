@@ -13,6 +13,18 @@
       </div>
     </transition>
     <!-- Follow Menu End -->
+    <!-- Sidebar Menu -->
+    <div class="ui sidebar inverted vertical menu left">
+      <div class="ui container">
+        <span class="header item">Kennith Loop International</span>
+        <router-link v-for="tab in navbars" v-bind:key="tab.name" :to="{ path: tab.path }" 
+          class="item" v-on:click.native="toggleActive(tab.name, $event)" v-bind:class="{active: tab.clicked}">
+            {{ tab.name }}
+        </router-link>  
+      </div>
+    </div>
+    <!-- Sidebar Menu End -->
+    <div class="pusher">
     <div class="ui inverted vertical masthead center aligned segmented" v-on:scroll="headerTransition()">
       <div class="ui container">
         <div class="ui massive inverted secondary pointing menu">
@@ -26,12 +38,13 @@
               {{ tab.name }}
           </router-link>
           </div>
-
         </div>
         <!-- conditional headers -->
         <div class="ui text container" v-if="this.$route.name === 'home'">
-          <h1 class="ui inverted header">Kennith Loop International</h1>
-          <h3 class="ui inverted header">Case utamur at pri. Tation convenire ullamcorper duo et. Duis detracto nominavi sed et, at sit tota equidem, te vis viderer noluisse conceptam.</h3>
+          <h1 class="ui inverted header">Welcome to Kennith Loop International</h1>
+          <h3 class="ui inverted header">
+            To get a quote or more product variatious please feel free to contact us!
+          </h3>
           <router-link to="/contact" tag="button" class="ui large primary button" v-on:click.native="setOff">Contact Us</router-link>
         </div>
         <div class="ui text container" v-else-if="this.$route.name === 'guitar'">
@@ -58,6 +71,9 @@
           <h1 class="ui inverted header">Contact Us</h1>
           <h3 class="ui inverted header">Case utamur at pri. Tation convenire ullamcorper duo et. Duis detracto nominavi sed et, at sit tota equidem, te vis viderer noluisse conceptam.</h3>
         </div>
+        <div class="ui text container" v-else>
+          <h1 class="ui inverted header">Product Page</h1>
+        </div>
         <!-- Conditional Headers End -->
       </div>
     </div>
@@ -83,6 +99,7 @@
           <span>Kennith Loop International Co., LTD</span>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -133,8 +150,12 @@ export default {
   components: {
   },
   methods: {
+    temp() {
+      console.log('temp');
+    },
     setOff() {
-      this.navbars.forEach((navbar) => {
+      this.navbars.forEach((navbars) => {
+        const navbar = navbars;
         if (navbar.clicked) {
           navbar.clicked = !navbar.clicked;
         }
@@ -159,6 +180,7 @@ export default {
         this.headerPassed = false;
       }
     },
+    sidebarTransition() {console.log('wow')},
     windowSize() {
       if (document.documentElement.clientWidth < 1025) {
         this.sideBar = true;
@@ -203,12 +225,12 @@ export default {
 }
 .main.container {
   padding-top: 7em;
+  padding-bottom: 7em;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 .ui.footer.segment {
-  margin: 5em 0em 0em;
   padding: 5em 0em;
   flex: 1;
 }

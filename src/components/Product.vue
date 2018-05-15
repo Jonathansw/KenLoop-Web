@@ -1,27 +1,38 @@
 <template>
-<div>
-  <div v-for="categories in types" v-bind:key="categories" class="ui vertical segment">
-    <h1>{{ categories }}</h1>
-    <div class="ui three column grid">
-      <div v-for="guitar in getProducts(categories)" v-bind:key="guitar._id" class="column">
-        <p>{{ guitar.name }}</p>
-        <p>{{ guitar.description }}</p>
+  <div class="ui main container">
+    <div class="ui message">
+      <p>Contact for more information about products and product specifications.</p>
+    </div>
+    <h1>{{ item.name }}</h1>
+    <div class="ui grid">
+      <div class="five wide column">
+        <img class="ui medium image" src="../assets/placeholder.jpeg">
+      </div>
+      <div class="eleven wide column">
+        <div class="ui raised very padded text container segment">
+          <pre>{{ item.description.split(",").join("\n") }}</pre>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
-
 <script>
 export default {
   name: 'Product',
-  props: ['products', 'types'],
-  methods: {
-    getProducts(search) {
-      return (_.filter(this.products, {type: search}));
-    }
+  data() {
+    return {
+      item: {},
+    };
   },
-}
+  beforeMount() {
+    this.temp();
+  },
+  methods: {
+    temp() {
+      this.item = this.$route.query.prod;
+    },
+  },
+};
 </script>
 <style>
 
