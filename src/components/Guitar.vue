@@ -26,6 +26,7 @@ export default {
     async getProducts() {
       const response = await ProductService.fetchGuitars();
       this.products = response.data.guitar;
+      console.log(this.products);
       this.types = _.map(_.uniqBy(response.data.guitar, 'type'), 'type');
     },
   },

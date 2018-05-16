@@ -3,7 +3,7 @@ module.exports = function (app, schema) {
   const baseUrl = '/guitar';
 
   app.get(baseUrl, (req, res) => {
-    Guitar.find({}, 'name description type', (error, item) => {
+    Guitar.find({}, 'name description type different', (error, item) => {
       if (error) {
         console.error(error);
       }

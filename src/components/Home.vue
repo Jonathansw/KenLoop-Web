@@ -1,7 +1,7 @@
 <template>
 <div class="ui main container">
-  <h1 class="ui dividing header">Products</h1>
-  <div class="ui four stackable cards">
+  <div class="ui huge dividing header">Products</div>
+  <div class="ui two stackable cards">
     <div v-for="i in (1, navbars.length - 1)" v-bind:key="navbars[i].name" v-on:mouseover="navbars[i].hover = true;" 
     v-on:mouseleave="navbars[i].hover = false" class="card">
       <div class="blurring dimmable image" v-bind:class="{dimmed: navbars[i].hover}">
@@ -20,7 +20,7 @@
         <img v-else-if="navbars[i].name === 'Bags & Cases'" src="../assets/bag.jpeg"> 
       </div>
       <div class="content">
-        <span class="header">{{navbars[i].name}}</span>
+        <h3>{{navbars[i].name}}</h3>
       </div>
     </div>  
   </div>
@@ -48,5 +48,8 @@ export default {
 };
 </script>
 <style>
+.ui.two.stackable.cards {
+  margin-top: 20px;
+}
 
 </style>

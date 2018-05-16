@@ -1,6 +1,6 @@
 <template>
   <div class="ui main container">
-    <div class="ui info message">
+    <div class="ui info message" v-show="item.different">
       <p>Contact for more information about products and product specifications.</p>
     </div>
     <h1>{{ item.name }}</h1>
@@ -35,5 +35,8 @@ export default {
 };
 </script>
 <style>
+pre {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif
+}
 
 </style>
