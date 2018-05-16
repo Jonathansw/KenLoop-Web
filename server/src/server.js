@@ -8,8 +8,11 @@ const serveStatic = require('serve-static');
 const path = require('path');
 
 const app = express();
-const dbURI = 'mongodb://localhost:27017/KenLoop';
+let dbURI = 'mongodb://localhost:27017/KenLoop';
 const emailPass = process.env.EMAIL_PASS;
+if (process.env.MONGODB_URI) {
+  dbURI = process.env.MONGODB_URI;
+}
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());

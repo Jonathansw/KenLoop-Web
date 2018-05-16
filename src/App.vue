@@ -180,7 +180,7 @@ export default {
         this.headerPassed = false;
       }
     },
-    sidebarTransition() {console.log('wow')},
+    sidebarTransition() {},
     windowSize() {
       if (document.documentElement.clientWidth < 1025) {
         this.sideBar = true;
